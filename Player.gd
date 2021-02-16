@@ -39,9 +39,7 @@ func get_rotation_input(input):
 
 	if (angle_rotation != Vector2.ZERO):
 		rotation = lerp_angle(rotation, angle_rotation.angle(), rotation_speed)
-		
-	print(rotation)
-		
+
 func _process(_delta):
 	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("shoot_mouse")):
 		shoot()
@@ -56,7 +54,12 @@ func _physics_process(_delta):
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	
-	print(velocity)
+	$Trace.process_material.set_gravity(Vector3(-velocity.x, -velocity.y, 0))
+	if (velocity != Vector2.ZERO):
+		$Trace.emitting = true
+	else:
+		$Trace.emitting = false
+		
 	velocity = move_and_slide(velocity)
 
 func shoot():
