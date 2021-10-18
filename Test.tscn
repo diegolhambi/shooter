@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 8.0
+margin_right = 1024.0
+margin_bottom = 616.0
+color = Color( 0.615686, 0.588235, 0.454902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, 8 )
+build_mode = 1
+polygon = PoolVector2Array( 16, 16, 1016, 8, 1016, 600, 16, 600 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 512, 312 )
+rotation = -1.5708
+Bullet = ExtResource( 3 )
